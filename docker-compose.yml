@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:14.8-alpine3.18
+    container_name: my_postgres
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: anna
+      POSTGRES_PASSWORD: 'mail1234'
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - ../2. Init Database:/docker-entrypoint-initdb.d
+      - habrdb-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U anna -d mydatabase"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - mynetwork
+
+  web:
+    build: .
+    command: bash -c 'while !</dev/tcp/db/5432; do sleep 10; done; uvicorn app.main:app --host 0.0.0.0'
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL="postgresql://anna:mail1234$@db:5432/mydatabase"
+    depends_on:
+      - db
+    networks:
+      - mynetwork 
+
+volumes:
+  habrdb-data:
+
+networks:
+  mynetwork:
