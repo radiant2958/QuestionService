@@ -3,4 +3,4 @@ __pycache__/
 *.pyo
 *.egg-info/
 myenv/
-.DS_Store
+*.DS_Store
