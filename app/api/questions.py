@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
-from app.db.session import get_db
-from app.db.models import Question
+from db.session import get_db
+from db.models import Question
 from sqlalchemy.orm import Session
 from sqlalchemy import exists
 import httpx
@@ -36,7 +36,7 @@ async def get_question(questions_num: int, db: Session = Depends(get_db)):
             creation_date=created_at))
         db.commit()
 
-    # Получаем последние добавленные вопросы из базы данных
+  
     last_questions = db.query(Question).order_by(Question.creation_date.desc()).limit(questions_num).all()
 
     return [{
