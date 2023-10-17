@@ -9,3 +9,21 @@
 Ответом на запрос из п.2.a должен быть предыдущей сохранённый вопрос для викторины. В случае его отсутствия - пустой объект.
 
 ## Структура проекта
+.
+├── app
+│   ├── api
+│   │   ├── __init__.py
+│   │   └── questions.py
+│   ├── db
+│   │   ├── __init__.py
+│   │   ├── base.py
+│   │   ├── models.py
+│   │   └── session.py
+│   ├── __init__.py
+│   └── main.py
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── docker-compose.yml
+└── requirements.txt
+
