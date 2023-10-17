@@ -9,21 +9,4 @@
 Ответом на запрос из п.2.a должен быть предыдущей сохранённый вопрос для викторины. В случае его отсутствия - пустой объект.
 
 ## Структура проекта
-.
-├── app
-│   ├── api
-│   │   ├── __init__.py
-│   │   └── questions.py
-│   ├── db
-│   │   ├── __init__.py
-│   │   ├── base.py
-│   │   ├── models.py
-│   │   └── session.py
-│   ├── __init__.py
-│   └── main.py
-├── .gitignore
-├── Dockerfile
-├── README.md
-├── docker-compose.yml
-└── requirements.txt
-
+<img width="812" alt="Снимок экрана 2023-10-17 в 20 53 50" src="https://github.com/radiant2958/QuestionService/assets/103328018/a3f06823-3249-4666-ab76-3f3292deec25">
